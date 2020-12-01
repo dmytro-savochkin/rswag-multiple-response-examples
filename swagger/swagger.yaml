@@ -4,7 +4,7 @@ info:
   title: API
   version: v1
 paths:
-  "/v2/user_emails/{id}":
+  "/emails/{id}":
     delete:
       summary: Delete user email
       tags:
