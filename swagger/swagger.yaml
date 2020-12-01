@@ -1,0 +1,43 @@
+---
+openapi: 3.0.1
+info:
+  title: API
+  version: v1
+paths:
+  "/v2/user_emails/{id}":
+    delete:
+      summary: Delete user email
+      tags:
+      - emails
+      security:
+      - bearer: []
+      parameters:
+      - name: id
+        in: path
+        description: Unique id of email
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              example: {}
+        '403':
+          description: Cannot delete user last email / Cannot delete user preferred email
+          content:
+            application/json:
+              examples:
+                Cannot delete user last email:
+                  value:
+                    errors:
+                      - status: 403
+                        code: last email
+                        title: Last user email cannot be deleted
+                Cannot delete preferred email:
+                  value:
+                    errors:
+                      - status: 403
+                        code: preferred email
+                        title: Preferred email cannot be deleted
